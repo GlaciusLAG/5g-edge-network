@@ -1,18 +1,14 @@
-# Entornos Virtuales y Variables de Entorno
 .venv/
 venv/
 env/
 .env
 
-# Python / Django
 __pycache__/
 *.pyc
 *.pyo
 db.sqlite3
 
-# Entornos de desarrollo (VS Code / JetBrains)
 .vscode/
 .idea/
 
-# SO
 .DS_Store
