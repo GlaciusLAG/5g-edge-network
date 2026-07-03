@@ -1,0 +1,38 @@
+services:
+  edge_django:
+    image: python:3.12-slim
+    container_name: edge_django
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - red_hospitalaria_privada
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:16-alpine
+    container_name: nodo_edge_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password_seguro
+      POSTGRES_DB: hospital_db
+    networks:
+      - red_hospitalaria_privada
+
+  redis:
+    image: redis:7-alpine
+    container_name: nodo_edge_redis
+    networks:
+      - red_hospitalaria_privada
+
+  dispositivo_medico:
+    image: alpine:latest
+    container_name: dispositivo_medico_piloto
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+
+networks:
+  red_hospitalaria_privada:
+    driver: bridge
