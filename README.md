@@ -50,9 +50,8 @@ Dentro de la carpeta del proyecto en terminal, usar los siguientes comandos para
 - [ ] Compila correctamente
 - [ ] Existe comunicación
 
-
+# Servicios y Puertos Utilizados
 <table>
-        <caption>Servicios y Puertos Utilizados</caption>
         <thead>
             <tr>
                 <th>Servicio</th>
