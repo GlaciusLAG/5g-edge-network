@@ -49,3 +49,51 @@ Dentro de la carpeta del proyecto en terminal, usar los siguientes comandos para
 - [ ] El código pasa las pruebas sugeridas
 - [ ] Compila correctamente
 - [ ] Existe comunicación
+
+
+<table>
+        <caption>Servicios y Puertos Utilizados</caption>
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Puerto</th>
+                <th>Descripción del Puerto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PostgreSQL</td>
+                <td>5432</td>
+                <td>
+                    Este puerto se usa para establecer conexiones orientadas a la transmisión,
+                    asegurando que los datos se entreguen de forma ordenada y sin errores.
+                </td>
+            </tr>
+            <tr>
+                <td>Redis</td>
+                <td>6379</td>
+                <td>
+                    Este puerto se utiliza por defecto para que los clientes interactúen
+                    con el servidor mediante el protocolo TCP.
+                </td>
+            </tr>
+            <tr>
+                <td>Grafana</td>
+                <td>3000</td>
+                <td>
+                    Es el puerto predeterminado configurado en su archivo de configuración
+                    (<code>grafana.ini</code>) bajo la sección <code>[server]</code>
+                    (<code>http_port = 3000</code>).
+                </td>
+            </tr>
+            <tr>
+                <td>Prometheus</td>
+                <td>9090</td>
+                <td>
+                    El puerto 9090 se utiliza para Prometheus principalmente como un estándar
+                    de conveniencia y para evitar colisiones con otros servicios críticos,
+                    aunque no es un puerto registrado oficialmente por IANA para Prometheus.
+                </td>
+            </tr>
+        </tbody>
+    </table>
