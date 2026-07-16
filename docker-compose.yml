@@ -1,37 +1,72 @@
 services:
   edge_django:
-    image: python:3.12-slim
+    build:
+      context: ./edge-node
+      dockerfile: Dockerfile
     container_name: edge_django
     working_dir: /app
-    command: tail -f /dev/null
+    volumes:
+      - ./edge-node:/app
     networks:
       - red_hospitalaria_privada
     depends_on:
       - db
       - redis
+    labels:
+      proyecto: "hospital_5g"
+      componente: "nodo_edge"
 
   db:
     image: postgres:16-alpine
     container_name: nodo_edge_postgres
     environment:
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password_seguro
+      POSTGRES_PASSWORD: admin
       POSTGRES_DB: hospital_db
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
     networks:
       - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        componente: "infraestructura"
 
   redis:
     image: redis:7-alpine
     container_name: nodo_edge_redis
     networks:
       - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        componente: "infraestructura"
 
-  dispositivo_medico:
+  ##################
+ ## DISPOSITIVOS ##
+##################
+  dispositivo_cardiograma:
     image: alpine:latest
-    container_name: dispositivo_medico_piloto
+    container_name: dispositivo_cardiograma_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+    - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "cardiologia"
+
+  dispositivo_respirador:
+    image: alpine:latest
+    container_name: dispositivo_respirador_1
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
       - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+
+volumes:
+    postgres_data:
 
 networks:
   red_hospitalaria_privada:
