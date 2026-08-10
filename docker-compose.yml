@@ -5,9 +5,11 @@ services:
       dockerfile: Dockerfile
     container_name: edge_django
     working_dir: /app
+    ports:
+      - "8000:8000"
     volumes:
       - ./edge-node:/app
-    environment: # ISSUE 7
+    environment:
       - DB_HOST=nodo_edge_postgres
       - DB_PORT=5432
       - DB_NAME=hospital_db
@@ -15,6 +17,7 @@ services:
       - DB_PASS=admin
       - REDIS_HOST=nodo_edge_redis
       - REDIS_PORT=6379
+    command: python manage.py runserver 0.0.0.0:8000
     networks:
       - red_hospitalaria_privada
     depends_on:
