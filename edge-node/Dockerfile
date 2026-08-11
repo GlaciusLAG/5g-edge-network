@@ -5,6 +5,8 @@ ENV PYTHONUNBUFFERED=1
 
 # Instalacion de dependencias del sistema
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    netcat-openbsd \
     iputils-ping \
     iproute2 \
     net-tools \
