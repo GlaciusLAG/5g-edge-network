@@ -20,7 +20,8 @@ services:
       - SECRET_KEY=${SECRET_KEY}
     command: python manage.py runserver 0.0.0.0:8000
     networks:
-      - red_hospitalaria_privada
+      - red_dispositivos
+      - red_datos
     depends_on:
       - db
       - redis
@@ -38,7 +39,7 @@ services:
     volumes:
     - postgres_data:/var/lib/postgresql/data
     networks:
-      - red_hospitalaria_privada
+      - red_datos
     labels:
         proyecto: "hospital_5g"
         componente: "infraestructura"
@@ -47,7 +48,7 @@ services:
     image: redis:7-alpine
     container_name: nodo_edge_redis
     networks:
-      - red_hospitalaria_privada
+      - red_datos
     labels:
         proyecto: "hospital_5g"
         componente: "infraestructura"
@@ -59,7 +60,7 @@ services:
     image: alpine:latest
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
-    - red_hospitalaria_privada
+    - red_dispositivos
     labels:
         proyecto: "hospital_5g"
         tipo: "dispositivo_medico"
@@ -69,7 +70,7 @@ services:
     image: alpine:latest
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
-      - red_hospitalaria_privada
+      - red_dispositivos
     labels:
         proyecto: "hospital_5g"
         tipo: "dispositivo_medico"
@@ -79,5 +80,8 @@ volumes:
     postgres_data:
 
 networks:
-  red_hospitalaria_privada:
+  red_dispositivos:
     driver: bridge
+  red_datos:
+    driver: bridge
+    internal: true
