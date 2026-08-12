@@ -5,18 +5,23 @@ services:
       dockerfile: Dockerfile
     container_name: edge_django
     working_dir: /app
+    ports:
+      - "8000:8000"
     volumes:
       - ./edge-node:/app
-    environment: # ISSUE 7
-      - DB_HOST=nodo_edge_postgres
-      - DB_PORT=5432
-      - DB_NAME=hospital_db
-      - DB_USER=admin
-      - DB_PASS=admin
-      - REDIS_HOST=nodo_edge_redis
-      - REDIS_PORT=6379
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${POSTGRES_DB}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+    command: python manage.py runserver 0.0.0.0:8000
     networks:
-      - red_hospitalaria_privada
+      - red_dispositivos
+      - red_datos
     depends_on:
       - db
       - redis
@@ -28,13 +33,13 @@ services:
     image: postgres:16-alpine
     container_name: nodo_edge_postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: hospital_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
     - postgres_data:/var/lib/postgresql/data
     networks:
-      - red_hospitalaria_privada
+      - red_datos
     labels:
         proyecto: "hospital_5g"
         componente: "infraestructura"
@@ -43,7 +48,7 @@ services:
     image: redis:7-alpine
     container_name: nodo_edge_redis
     networks:
-      - red_hospitalaria_privada
+      - red_datos
     labels:
         proyecto: "hospital_5g"
         componente: "infraestructura"
@@ -53,10 +58,9 @@ services:
 ##################
   dispositivo_cardiograma:
     image: alpine:latest
-    container_name: dispositivo_cardiograma_1
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
-    - red_hospitalaria_privada
+    - red_dispositivos
     labels:
         proyecto: "hospital_5g"
         tipo: "dispositivo_medico"
@@ -64,10 +68,9 @@ services:
 
   dispositivo_respirador:
     image: alpine:latest
-    container_name: dispositivo_respirador_1
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
-      - red_hospitalaria_privada
+      - red_dispositivos
     labels:
         proyecto: "hospital_5g"
         tipo: "dispositivo_medico"
@@ -77,5 +80,8 @@ volumes:
     postgres_data:
 
 networks:
-  red_hospitalaria_privada:
+  red_dispositivos:
     driver: bridge
+  red_datos:
+    driver: bridge
+    internal: true
