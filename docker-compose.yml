@@ -1,9 +1,9 @@
 services:
-  edge_django:
+  edge-django:
     build:
       context: ./edge-node
       dockerfile: Dockerfile
-    container_name: edge_django
+    container_name: edge-django
     working_dir: /app
     ports:
       - "8000:8000"
@@ -18,7 +18,7 @@ services:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - SECRET_KEY=${SECRET_KEY}
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py makemigrations telemetria && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     networks:
       - red_dispositivos
       - red_datos
@@ -37,12 +37,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-    - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - red_datos
     labels:
-        proyecto: "hospital_5g"
-        componente: "infraestructura"
+      proyecto: "hospital_5g"
+      componente: "infraestructura"
 
   redis:
     image: redis:7-alpine
@@ -50,34 +50,48 @@ services:
     networks:
       - red_datos
     labels:
-        proyecto: "hospital_5g"
-        componente: "infraestructura"
+      proyecto: "hospital_5g"
+      componente: "infraestructura"
 
   ##################
- ## DISPOSITIVOS ##
-##################
+  ## DISPOSITIVOS ##
+  ##################
   dispositivo_cardiograma:
-    image: alpine:latest
-    entrypoint: ["tail", "-f", "/dev/null"]
-    networks:
-    - red_dispositivos
-    labels:
-        proyecto: "hospital_5g"
-        tipo: "dispositivo_medico"
-        especialidad: "cardiologia"
-
-  dispositivo_respirador:
-    image: alpine:latest
-    entrypoint: ["tail", "-f", "/dev/null"]
+    build:
+      context: ./dispositivos_medicos
+      dockerfile: Dockerfile
+    environment:
+      - TIPO_DISPOSITIVO=cardiograma
+      - EDGE_URL_JSON=http://edge-django:8000/api/telemetria/
+      - EDGE_URL_FILE=http://edge-django:8000/api/telemetria/archivo/
     networks:
       - red_dispositivos
+    depends_on:
+      - edge-django
     labels:
-        proyecto: "hospital_5g"
-        tipo: "dispositivo_medico"
-        especialidad: "urgencias"
+      proyecto: "hospital_5g"
+      tipo: "dispositivo_medico"
+      especialidad: "cardiologia"
+
+  dispositivo_respirador:
+    build:
+      context: ./dispositivos_medicos
+      dockerfile: Dockerfile
+    environment:
+      - TIPO_DISPOSITIVO=respirador
+      - EDGE_URL_JSON=http://edge-django:8000/api/telemetria/
+      - EDGE_URL_FILE=http://edge-django:8000/api/telemetria/archivo/
+    networks:
+      - red_dispositivos
+    depends_on:
+      - edge-django
+    labels:
+      proyecto: "hospital_5g"
+      tipo: "dispositivo_medico"
+      especialidad: "urgencias"
 
 volumes:
-    postgres_data:
+  postgres_data:
 
 networks:
   red_dispositivos:
