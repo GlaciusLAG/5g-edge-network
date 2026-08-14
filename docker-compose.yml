@@ -72,6 +72,259 @@ services:
         proyecto: "hospital_5g"
         tipo: "dispositivo_medico"
         especialidad: "urgencias"
+        
+  dispositivo_signos_vitales:
+    image: alpine:latest
+    container_name: dispositivo_signos_vitales_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+ dispositivo_ventiladores:
+    image: alpine:latest
+    container_name: dispositivo_ventiladores_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_desfibriladores:
+    image: alpine:latest
+    container_name: dispositivo_desfibriladores_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_bombas_infución:
+    image: alpine:latest
+    container_name: dispositivo_bombas_infución_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_electrocardiógrama:
+    image: alpine:latest
+    container_name: dispositivo_electrocardiógrama_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_ultrasonidos:
+    image: alpine:latest
+    container_name: dispositivo_ultrasonidos_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_rayosx:
+    image: alpine:latest
+    container_name: dispositivo_rayosx_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_tomógrafo:
+    image: alpine:latest
+    container_name: dispositivo_tomógrafo_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_resonador_magnético:
+    image: alpine:latest
+    container_name: dispositivo_resonador_magnético_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_ecógrafo:
+    image: alpine:latest
+    container_name: dispositivo_ecógrafo_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_electrocardiógrafo:
+    image: alpine:latest
+    container_name: dispositivo_electrocardiógrafo_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_esfigmomanómetro:
+    image: alpine:latest
+    container_name: dispositivo_esfigmomanómetro_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_glucómetro:
+    image: alpine:latest
+    container_name: dispositivo_glucómetro_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_capnógrafo:
+    image: alpine:latest
+    container_name: dispositivo_capnógrafo_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_máquina_hemodiálisis:
+    image: alpine:latest
+    container_name: dispositivo_máquina_hemodiálisis_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_incubadora_neonatal:
+    image: alpine:latest
+    container_name: dispositivo_incubadora_neonatal_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_concentrador_oxigeno:
+    image: alpine:latest
+    container_name: dispositivo_concentrador_oxigeno_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_máquina_anestesia:
+    image: alpine:latest
+    container_name: dispositivo_máquina_anestesia_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_aspirador_quirúrgica:
+    image: alpine:latest
+    container_name: dispositivo_aspirador_quirúrgica_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_autoclave:
+    image: alpine:latest
+    container_name: dispositivo_autoclave_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_centrifuga_laboratorio:
+    image: alpine:latest
+    container_name: dispositivo_centrifuga_laboratorio_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_recepción:
+    image: alpine:latest
+    container_name: dispositivo_recepción_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
+        
+  dispositivo_dirección:
+    image: alpine:latest
+    container_name: dispositivo_dirección_1
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - red_hospitalaria_privada
+    labels:
+        proyecto: "hospital_5g"
+        tipo: "dispositivo_medico"
+        especialidad: "urgencias"
 
 volumes:
     postgres_data:
