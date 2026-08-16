@@ -12,3 +12,6 @@ db.sqlite3
 .idea/
 
 .DS_Store
+
+edge-node/telemetria_files/
+*.dcm
