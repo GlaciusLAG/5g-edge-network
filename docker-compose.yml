@@ -60,6 +60,8 @@ services:
     build:
       context: ./dispositivos_medicos
       dockerfile: Dockerfile
+    cap_add:
+      - NET_ADMIN
     environment:
       - TIPO_DISPOSITIVO=cardiograma
       - EDGE_URL_JSON=http://edge-django:8000/api/telemetria/
@@ -77,6 +79,8 @@ services:
     build:
       context: ./dispositivos_medicos
       dockerfile: Dockerfile
+    cap_add:
+      - NET_ADMIN
     environment:
       - TIPO_DISPOSITIVO=respirador
       - EDGE_URL_JSON=http://edge-django:8000/api/telemetria/
